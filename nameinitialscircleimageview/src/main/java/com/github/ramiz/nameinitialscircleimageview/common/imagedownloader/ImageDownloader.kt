@@ -1,6 +1,7 @@
 package com.github.ramiz.nameinitialscircleimageview.common.imagedownloader
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.widget.ImageView
 
 /**
@@ -11,5 +12,5 @@ import android.widget.ImageView
  * image downloaders.
  */
 interface ImageDownloader {
-    fun downloadImage(context: Context, url: String, imageView: ImageView)
+    fun downloadImage(context: Context, url: String, imageView: ImageView, placeHolder: Drawable)
 }

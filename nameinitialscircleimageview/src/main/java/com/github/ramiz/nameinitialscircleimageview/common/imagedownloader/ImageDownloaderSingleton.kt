@@ -1,6 +1,7 @@
 package com.github.ramiz.nameinitialscircleimageview.common.imagedownloader
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.widget.ImageView
 
 /**
@@ -17,7 +18,7 @@ object ImageDownloaderSingleton {
     //code in app will not need a single line of code change. Cool na?
     private val imageDownloader: ImageDownloader = PicassoImageDownloader()
 
-    fun loadImage(context: Context, url: String, imageView: ImageView) {
-        imageDownloader.downloadImage(context, url, imageView)
+    fun loadImage(context: Context, url: String, imageView: ImageView, placeHolder: Drawable) {
+        imageDownloader.downloadImage(context, url, imageView, placeHolder)
     }
 }

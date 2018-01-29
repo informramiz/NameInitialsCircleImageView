@@ -1,6 +1,7 @@
 package com.github.ramiz.nameinitialscircleimageview.common.imagedownloader
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 
@@ -9,11 +10,12 @@ import com.squareup.picasso.Picasso
  */
 final class PicassoImageDownloader : ImageDownloader {
 
-    override fun downloadImage(context: Context, url: String, imageView: ImageView) {
+    override fun downloadImage(context: Context, url: String, imageView: ImageView, placeHolder: Drawable) {
         Picasso
                 .with(context)
                 .load(url)
-                .error(android.R.drawable.ic_delete)
+                .noFade()
+                .placeholder(placeHolder)
                 .into(imageView)
     }
 
