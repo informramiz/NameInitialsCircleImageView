@@ -3,6 +3,7 @@ package com.github.ramiz.nameinitialscircleimageview
 import android.content.Context
 import android.graphics.Typeface
 import android.support.annotation.ColorInt
+import android.support.annotation.ColorRes
 import android.support.annotation.DimenRes
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
@@ -32,7 +33,8 @@ class NameInitialsCircleImageView : CircleImageView {
     private var mHeightPixels: Int
     private var mTypeface: Typeface
     @ColorInt
-    private var mFillColor: Int
+    private var mCircleBackgroundColor: Int
+
 
     constructor(context: Context?) : super(context) {
         init(null)
@@ -45,7 +47,7 @@ class NameInitialsCircleImageView : CircleImageView {
         mWidthPixels = context.resources.getDimensionPixelSize(DEFAULT_WIDTH_DP)
         mHeightPixels = context.resources.getDimensionPixelSize(DEFAULT_HEIGHT_DP)
         mTypeface = DEFAULT_FONT
-        mFillColor = ContextCompat.getColor(context, android.R.color.holo_blue_light)
+        mCircleBackgroundColor = ContextCompat.getColor(context, android.R.color.holo_blue_light)
     }
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
@@ -92,14 +94,72 @@ class NameInitialsCircleImageView : CircleImageView {
                 .width(mWidthPixels)
                 .height(mHeightPixels)
                 .endConfig()
-                .buildRound(mText, mFillColor);
+                .buildRound(mText, mCircleBackgroundColor);
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        LogUtils.i(TAG, "Measured (width, heigh)=($w, $h)")
+        LogUtils.i(TAG, "Measured (width, height)=($w, $h)")
         mWidthPixels = w - paddingLeft - paddingRight
         mHeightPixels = h - paddingTop - paddingBottom
         updateImageDrawable()
+    }
+
+    fun setText(text: String) {
+        mText = text
+        updateImageDrawable()
+    }
+
+    fun getText(): String {
+        return mText
+    }
+
+    /**
+     * Sets the background color of the circle
+     *
+     * @deprecated Use {@link #setCircleBackgroundColor()} instead
+     */
+    @Deprecated("Use setCircleBackgroundColor() instead", ReplaceWith("this.circleBackgroundColor = color"))
+    override fun setFillColor(@ColorInt color: Int) {
+        this.circleBackgroundColor = color
+    }
+
+    /**
+     * Sets the background color of the circle from a color resource
+     *
+     * @deprecated Use {@link #setCircleBackgroundColorResource()} instead
+     */
+    @Deprecated("Use setCircleBackgroundColorResource() instead", ReplaceWith("this.setCircleBackgroundColorResource(fillColorRes)"))
+    override fun setFillColorResource(@ColorRes fillColorRes: Int) {
+        this.setCircleBackgroundColorResource(fillColorRes)
+    }
+
+    /**
+     * Gets the color of the circular drawable
+     * @return color value of the circular drawable background color
+     * @deprecated Use {@link #get
+     */
+    override fun getFillColor(): Int {
+        return this.circleBackgroundColor;
+    }
+
+    /**
+     * Sets the background color of the circle from a color resource
+     */
+    override fun setCircleBackgroundColorResource(@ColorRes circleBackgroundColor: Int) {
+        mCircleBackgroundColor = ContextCompat.getColor(context, circleBackgroundColor)
+        updateImageDrawable()
+    }
+
+    /**
+     * Sets the background color of the circle
+     */
+    override fun setCircleBackgroundColor(@ColorInt circleBackgroundColor: Int) {
+        mCircleBackgroundColor = circleBackgroundColor
+        updateImageDrawable()
+    }
+
+    override fun getCircleBackgroundColor(): Int {
+        return mCircleBackgroundColor;
     }
 }
