@@ -10,6 +10,6 @@ import android.widget.ImageView
  * so that code can be easily switched between different
  * image downloaders.
  */
-open interface ImageDownloader {
+interface ImageDownloader {
     fun downloadImage(context: Context, url: String, imageView: ImageView)
 }
