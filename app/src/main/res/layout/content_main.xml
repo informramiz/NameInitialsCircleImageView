@@ -10,6 +10,7 @@
     tools:showIn="@layout/activity_main">
 
     <com.github.ramiz.nameinitialscircleimageview.NameInitialsCircleImageView
+        android:id="@+id/initialsCircleImageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
         app:text="RR"
