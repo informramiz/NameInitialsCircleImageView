@@ -1,4 +1,4 @@
-package com.materialdesign.ramiz.sampleapplication
+package com.github.ramiz.sampleapplication
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.materialdesign.ramiz.sampleapplication
+package com.github.ramiz.sampleapplication
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
