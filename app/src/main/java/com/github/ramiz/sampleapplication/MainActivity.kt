@@ -23,8 +23,9 @@ class MainActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
 
-        initialsCircleImageView.setText("MR")
-        initialsCircleImageView.setCircleBackgroundColorResource(android.R.color.darker_gray)
+//        initialsCircleImageView.setText("MR")
+//        initialsCircleImageView.setCircleBackgroundColorResource(android.R.color.darker_gray)
+        initialsCircleImageView.setImageUrl("http://i.imgur.com/DvpvklR.png")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

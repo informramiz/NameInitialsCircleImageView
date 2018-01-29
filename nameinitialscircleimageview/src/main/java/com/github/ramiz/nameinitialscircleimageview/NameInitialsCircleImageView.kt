@@ -8,7 +8,7 @@ import android.support.annotation.DimenRes
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import com.amulyakhare.textdrawable.TextDrawable
-import com.github.ramiz.nameinitialscircleimageview.common.LogUtils
+import com.github.ramiz.nameinitialscircleimageview.common.imagedownloader.ImageDownloaderSingleton
 import de.hdodenhof.circleimageview.CircleImageView
 
 /**
@@ -34,7 +34,7 @@ class NameInitialsCircleImageView : CircleImageView {
     private var mTypeface: Typeface
     @ColorInt
     private var mCircleBackgroundColor: Int
-
+    private var mImageUrl: String? = null
 
     constructor(context: Context?) : super(context) {
         init(null)
@@ -60,7 +60,13 @@ class NameInitialsCircleImageView : CircleImageView {
     }
 
     private fun updateImageDrawable() {
-        setImageDrawable(createRoundTextDrawable())
+        val url = mImageUrl
+        val textDrawable = createRoundTextDrawable()
+        if (url == null) {
+            setImageDrawable(textDrawable)
+        } else {
+            ImageDownloaderSingleton.loadImage(context, url, this, textDrawable);
+        }
     }
 
     private fun extractAttributes(attrs: AttributeSet?) {
@@ -99,7 +105,6 @@ class NameInitialsCircleImageView : CircleImageView {
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        LogUtils.i(TAG, "Measured (width, height)=($w, $h)")
         mWidthPixels = w - paddingLeft - paddingRight
         mHeightPixels = h - paddingTop - paddingBottom
         updateImageDrawable()
@@ -160,6 +165,15 @@ class NameInitialsCircleImageView : CircleImageView {
     }
 
     override fun getCircleBackgroundColor(): Int {
-        return mCircleBackgroundColor;
+        return mCircleBackgroundColor
+    }
+
+    fun setImageUrl(url: String?) {
+        mImageUrl = url
+        updateImageDrawable()
+    }
+
+    fun getImageUrl(): String? {
+        return mImageUrl
     }
 }
