@@ -10,10 +10,9 @@
     tools:showIn="@layout/activity_main">
 
     <com.github.ramiz.nameinitialscircleimageview.NameInitialsCircleImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="Hello World!"
-        app:text="Hello world"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:text="RR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

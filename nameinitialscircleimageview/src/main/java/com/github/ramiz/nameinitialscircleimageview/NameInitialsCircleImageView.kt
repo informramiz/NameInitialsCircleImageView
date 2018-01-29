@@ -7,6 +7,7 @@ import android.support.annotation.DimenRes
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import com.amulyakhare.textdrawable.TextDrawable
+import com.github.ramiz.nameinitialscircleimageview.common.LogUtils
 import de.hdodenhof.circleimageview.CircleImageView
 
 /**
@@ -53,6 +54,11 @@ class NameInitialsCircleImageView : CircleImageView {
 
     private fun init(attrs: AttributeSet?) {
         extractAttributes(attrs)
+        updateImageDrawable()
+    }
+
+    private fun updateImageDrawable() {
+        setImageDrawable(createRoundTextDrawable())
     }
 
     private fun extractAttributes(attrs: AttributeSet?) {
@@ -68,8 +74,6 @@ class NameInitialsCircleImageView : CircleImageView {
         } finally {
             typedArray.recycle();
         }
-
-        setImageDrawable(createRoundTextDrawable())
     }
 
     private fun loadFont(fontName: String?): Typeface {
@@ -89,5 +93,13 @@ class NameInitialsCircleImageView : CircleImageView {
                 .height(mHeightPixels)
                 .endConfig()
                 .buildRound(mText, mFillColor);
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        LogUtils.i(TAG, "Measured (width, heigh)=($w, $h)")
+        mWidthPixels = w - paddingLeft - paddingRight
+        mHeightPixels = h - paddingTop - paddingBottom
+        updateImageDrawable()
     }
 }
