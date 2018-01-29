@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
 
-        initialsCircleImageView.setText("")
+        initialsCircleImageView.setText("MR")
+        initialsCircleImageView.setCircleBackgroundColorResource(android.R.color.darker_gray)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
