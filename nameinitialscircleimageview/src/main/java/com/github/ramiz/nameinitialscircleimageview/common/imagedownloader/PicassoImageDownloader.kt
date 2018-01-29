@@ -1,4 +1,4 @@
-package com.github.ramiz.nameinitialscircleimageview.common
+package com.github.ramiz.nameinitialscircleimageview.common.imagedownloader
 
 import android.content.Context
 import android.widget.ImageView
