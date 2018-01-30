@@ -1,7 +1,7 @@
 # NameInitialsCircleImageView
 A circle image view that not only supports showing circular images but also supports showing name initial letters with a background color in case there is no image available, just like the Gmail Android app.
 
-![screenshot-1.png](demo-images/s2.png) 
+![screenshot-1.png](demo-images/s3.png) 
 
 It is just a custom view and you can use it just like you use any native Android views.
 
