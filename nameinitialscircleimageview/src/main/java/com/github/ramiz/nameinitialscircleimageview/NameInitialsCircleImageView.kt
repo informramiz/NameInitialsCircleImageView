@@ -8,10 +8,13 @@ import android.support.annotation.DimenRes
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.github.ramiz.nameinitialscircleimageview.common.imagedownloader.ImageDownloaderSingleton
 import de.hdodenhof.circleimageview.CircleImageView
 
 /**
+ * A circle ImageView that can show circular image with letters
+ * and circle images
  * Created by ramiz on 1/29/18.
  */
 
@@ -23,15 +26,16 @@ class NameInitialsCircleImageView : CircleImageView {
     private val DEFAULT_WIDTH_DP = R.dimen.default_width
     @DimenRes
     private val DEFAULT_HEIGHT_DP = R.dimen.default_height
-    private val DEFAULT_FONT = Typeface.DEFAULT;
+    private val DEFAULT_FONT = Typeface.DEFAULT
 
-    private var mText: String
     private var mTextSizePixels: Int
-    @ColorInt
-    private var mTextColor: Int
     private var mWidthPixels: Int
     private var mHeightPixels: Int
+
+    private var mText: String
     private var mTypeface: Typeface
+    @ColorInt
+    private var mTextColor: Int
     @ColorInt
     private var mCircleBackgroundColor: Int
     private var mImageUrl: String? = null
