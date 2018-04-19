@@ -2,7 +2,7 @@
 
 buildscript {
     ext.kotlin_version = '1.2.31'
-    ext.support_libs_version = '27.0.2'
+    ext.support_libs_version = '27.1.1'
     ext.versionCode = 1
     ext.versionName = "1.0"
     repositories {
@@ -23,9 +23,6 @@ buildscript {
 
 allprojects {
     repositories {
-        maven {
-            url 'https://dl.bintray.com/informramiz/SimpleDayPicker'
-        }
         google()
         jcenter()
     }
