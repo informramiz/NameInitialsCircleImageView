@@ -5,7 +5,10 @@ import android.graphics.Typeface
 import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.annotation.DimenRes
+import android.support.annotation.FontRes
 import android.support.v4.content.ContextCompat
+import android.support.v4.content.res.ResourcesCompat
+import android.support.v4.content.res.TypedArrayUtils
 import android.util.AttributeSet
 import com.amulyakhare.textdrawable.TextDrawable
 import com.github.ramiz.nameinitialscircleimageview.common.imagedownloader.ImageDownloaderSingleton
@@ -86,8 +89,16 @@ class NameInitialsCircleImageView : CircleImageView {
             mText = typedArray.getString(R.styleable.NameInitialsCircleImageView_text) ?: ""
             mTextSizePixels = typedArray.getDimensionPixelSize(R.styleable.NameInitialsCircleImageView_textSize,
                     context.resources.getDimensionPixelSize(DEFAULT_TEXT_SIZE_SP))
-            val customFontName = typedArray.getString(R.styleable.NameInitialsCircleImageView_textFont)
-            mTypeface = loadFont(customFontName)
+
+            //check if there is font id specified by the developer
+            if (typedArray.hasValue(R.styleable.NameInitialsCircleImageView_textFont)) {
+                //fetch the resource id and load the font
+                @FontRes val fontResId  = typedArray.getResourceId(R.styleable.NameInitialsCircleImageView_textFont, -1)
+                val typeface = ResourcesCompat.getFont(context, fontResId)
+                if (typeface != null) {
+                    mTypeface = typeface;
+                }
+            }
         } finally {
             typedArray.recycle();
         }
@@ -176,28 +187,36 @@ class NameInitialsCircleImageView : CircleImageView {
         this.mTextColor = ContextCompat.getColor(context, imageInfo.textColorRes)
         this.mCircleBackgroundColor = ContextCompat.getColor(context, imageInfo.circleBackgroundColorRes)
         this.mImageUrl = imageInfo.imageUrl
+        if (imageInfo.fontResId != null) {
+            val typeface = ResourcesCompat.getFont(context, imageInfo.fontResId)
+            if (typeface != null) {
+                mTypeface = typeface;
+            }
+        }
         updateImageDrawable()
     }
 
     class ImageInfo(builder: Builder) {
-        internal var text: String
-        internal var typeface: Typeface
+        internal val text: String
+        @FontRes
+        internal val fontResId: Int?
         @ColorRes
-        internal var textColorRes: Int
+        internal val textColorRes: Int
         @ColorRes
-        internal var circleBackgroundColorRes: Int
-        internal var imageUrl: String? = null
+        internal val circleBackgroundColorRes: Int
+        internal val imageUrl: String?
 
         init {
             this.text = builder.text
-            this.typeface = builder.typeface
+            this.fontResId = builder.fontResId
             this.textColorRes = builder.textColorRes
             this.circleBackgroundColorRes = builder.circleBackgroundColorRes
             this.imageUrl = builder.imageUrl
         }
 
         class Builder(internal var text: String) {
-            internal var typeface: Typeface = NameInitialsCircleImageView.DEFAULT_FONT
+            @FontRes
+            internal var fontResId: Int? = null
             @ColorRes
             internal var textColorRes: Int = NameInitialsCircleImageView.DEFAULT_TEXT_COLOR
             @ColorRes
@@ -205,32 +224,32 @@ class NameInitialsCircleImageView : CircleImageView {
             internal var imageUrl: String? = null
 
             fun setText(text: String): Builder {
-                this.text = text;
-                return this;
+                this.text = text
+                return this
             }
 
-//            fun setTextFont(typeface: Typeface): Builder {
-//                this.typeface = typeface;
-//                return this;
-//            }
+            fun setTextFont(@FontRes fontResId: Int?): Builder {
+                this.fontResId = fontResId
+                return this
+            }
 
             fun setTextColor(@ColorRes textColorRes: Int): Builder {
-                this.textColorRes = textColorRes;
-                return this;
+                this.textColorRes = textColorRes
+                return this
             }
 
             fun setCircleBackgroundColorRes(@ColorRes circleBackgroundColorRes: Int): Builder {
-                this.circleBackgroundColorRes = circleBackgroundColorRes;
-                return this;
+                this.circleBackgroundColorRes = circleBackgroundColorRes
+                return this
             }
 
             fun setImageUrl(imageUrl: String): Builder {
-                this.imageUrl = imageUrl;
-                return this;
+                this.imageUrl = imageUrl
+                return this
             }
 
             fun build(): ImageInfo {
-                return ImageInfo(this);
+                return ImageInfo(this)
             }
         }
     }

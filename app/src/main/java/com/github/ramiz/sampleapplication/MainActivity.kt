@@ -36,6 +36,13 @@ class MainActivity : AppCompatActivity() {
                 .build();
         initialsCircleImageView2.setImageInfo(imageInfo2)
 
+
+        //image info config with image url null, so this should display only text
+        val imageInfo3: NameInitialsCircleImageView.ImageInfo = NameInitialsCircleImageView.ImageInfo
+                .Builder("RR")
+                .setTextFont(R.font.aguafina_script)
+                .build();
+        initialsCircleImageView3.setImageInfo(imageInfo3)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

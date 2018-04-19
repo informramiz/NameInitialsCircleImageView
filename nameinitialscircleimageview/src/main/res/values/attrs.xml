@@ -4,6 +4,6 @@
         <attr name="textSize" format="dimension"/>
         <attr name="textColor" format="color"/>
         <attr name="text" format="string" required="true"/>
-        <attr name="textFont" format="string"/>
+        <attr name="textFont" format="reference"/>
     </declare-styleable>
 </resources>
