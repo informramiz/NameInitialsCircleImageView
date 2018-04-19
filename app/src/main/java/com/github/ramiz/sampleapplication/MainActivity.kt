@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.github.ramiz.nameinitialscircleimageview.MaterialColorGenerator
 import com.github.ramiz.nameinitialscircleimageview.NameInitialsCircleImageView
 import com.materialdesign.ramiz.sampleapplication.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         //image info config with image url null, so this should display only text
         val imageInfo2: NameInitialsCircleImageView.ImageInfo = NameInitialsCircleImageView.ImageInfo
-                .Builder("RR")
+                .Builder("RRt")
                 .setTextColor(android.R.color.primary_text_dark)
                 .setCircleBackgroundColorRes(android.R.color.holo_orange_dark)
                 .build();
@@ -39,9 +40,10 @@ class MainActivity : AppCompatActivity() {
 
         //image info config with image url null, so this should display only text
         val imageInfo3: NameInitialsCircleImageView.ImageInfo = NameInitialsCircleImageView.ImageInfo
-                .Builder("RR")
+                .Builder("RRR")
                 .setTextFont(R.font.aguafina_script)
-                .build();
+                .setColorGenerator(MaterialColorGenerator())
+                .build()
         initialsCircleImageView3.setImageInfo(imageInfo3)
     }
 

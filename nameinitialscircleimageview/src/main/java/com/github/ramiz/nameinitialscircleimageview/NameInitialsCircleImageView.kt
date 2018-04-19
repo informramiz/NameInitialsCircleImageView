@@ -11,6 +11,7 @@ import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.content.res.TypedArrayUtils
 import android.util.AttributeSet
 import com.amulyakhare.textdrawable.TextDrawable
+import com.github.ramiz.nameinitialscircleimageview.common.LogUtils
 import com.github.ramiz.nameinitialscircleimageview.common.imagedownloader.ImageDownloaderSingleton
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -34,6 +35,7 @@ class NameInitialsCircleImageView : CircleImageView {
         private val DEFAULT_FONT = Typeface.DEFAULT
         @ColorRes
         private val DEFAULLT_CIRCLE_BACKGROUND_COLOR = android.R.color.holo_blue_light
+        private val DEFAULT_COLOR_GENERATOR = MaterialColorGenerator()
     }
 
     private var mTextSizePixels: Int
@@ -47,6 +49,7 @@ class NameInitialsCircleImageView : CircleImageView {
     @ColorInt
     private var mCircleBackgroundColor: Int
     private var mImageUrl: String? = null
+    private var mColorGenerator: ColorGenerator
 
     constructor(context: Context?) : super(context) {
         init(null)
@@ -59,7 +62,9 @@ class NameInitialsCircleImageView : CircleImageView {
         mWidthPixels = context.resources.getDimensionPixelSize(DEFAULT_WIDTH_DP)
         mHeightPixels = context.resources.getDimensionPixelSize(DEFAULT_HEIGHT_DP)
         mTypeface = DEFAULT_FONT
-        mCircleBackgroundColor = ContextCompat.getColor(context, DEFAULLT_CIRCLE_BACKGROUND_COLOR)
+        mColorGenerator = DEFAULT_COLOR_GENERATOR
+//        mCircleBackgroundColor = ContextCompat.getColor(context, DEFAULLT_CIRCLE_BACKGROUND_COLOR)
+        mCircleBackgroundColor = mColorGenerator.generateColor(mText)
     }
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
@@ -185,14 +190,24 @@ class NameInitialsCircleImageView : CircleImageView {
     fun setImageInfo(imageInfo: ImageInfo) {
         this.mText = imageInfo.text
         this.mTextColor = ContextCompat.getColor(context, imageInfo.textColorRes)
-        this.mCircleBackgroundColor = ContextCompat.getColor(context, imageInfo.circleBackgroundColorRes)
         this.mImageUrl = imageInfo.imageUrl
+        //load font if specified
         if (imageInfo.fontResId != null) {
             val typeface = ResourcesCompat.getFont(context, imageInfo.fontResId)
             if (typeface != null) {
                 mTypeface = typeface;
             }
         }
+
+        this.mColorGenerator = imageInfo.colorGenerator
+        //load or generate color
+        if (imageInfo.circleBackgroundColorRes != null) {
+            LogUtils.i(TAG, "background color is not null")
+            this.mCircleBackgroundColor = ContextCompat.getColor(context, imageInfo.circleBackgroundColorRes)
+        } else{
+            this.mCircleBackgroundColor = mColorGenerator.generateColor(mText)
+        }
+
         updateImageDrawable()
     }
 
@@ -203,8 +218,9 @@ class NameInitialsCircleImageView : CircleImageView {
         @ColorRes
         internal val textColorRes: Int
         @ColorRes
-        internal val circleBackgroundColorRes: Int
+        internal val circleBackgroundColorRes: Int?
         internal val imageUrl: String?
+        internal val colorGenerator: ColorGenerator
 
         init {
             this.text = builder.text
@@ -212,6 +228,7 @@ class NameInitialsCircleImageView : CircleImageView {
             this.textColorRes = builder.textColorRes
             this.circleBackgroundColorRes = builder.circleBackgroundColorRes
             this.imageUrl = builder.imageUrl
+            this.colorGenerator = builder.colorGenerator
         }
 
         class Builder(internal var text: String) {
@@ -220,7 +237,8 @@ class NameInitialsCircleImageView : CircleImageView {
             @ColorRes
             internal var textColorRes: Int = NameInitialsCircleImageView.DEFAULT_TEXT_COLOR
             @ColorRes
-            internal var circleBackgroundColorRes: Int = NameInitialsCircleImageView.DEFAULLT_CIRCLE_BACKGROUND_COLOR
+            internal var circleBackgroundColorRes: Int? = null
+            internal var colorGenerator: ColorGenerator = NameInitialsCircleImageView.DEFAULT_COLOR_GENERATOR
             internal var imageUrl: String? = null
 
             fun setText(text: String): Builder {
@@ -246,6 +264,11 @@ class NameInitialsCircleImageView : CircleImageView {
             fun setImageUrl(imageUrl: String): Builder {
                 this.imageUrl = imageUrl
                 return this
+            }
+
+            fun setColorGenerator(colorGenerator: ColorGenerator): Builder {
+                this.colorGenerator = colorGenerator;
+                return this;
             }
 
             fun build(): ImageInfo {
