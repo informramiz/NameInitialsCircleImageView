@@ -124,7 +124,7 @@ class NameInitialsCircleImageView : CircleImageView {
      *
      * @deprecated Use {@link #setCircleBackgroundColor()} instead
      */
-    @Deprecated("Use setCircleBackgroundColor() instead", ReplaceWith("this.setImageInfo(imageInfo)"))
+    @Deprecated("Use setImageInfo() instead", ReplaceWith("this.setImageInfo(imageInfo)"))
     override fun setFillColor(@ColorInt color: Int) {
         this.circleBackgroundColor = color
     }
@@ -134,7 +134,7 @@ class NameInitialsCircleImageView : CircleImageView {
      *
      * @deprecated Use {@link #setCircleBackgroundColorResource()} instead
      */
-    @Deprecated("Use setCircleBackgroundColorResource() instead", ReplaceWith("this.setImageInfo(imageInfo)"))
+    @Deprecated("Use setImageInfo() instead", ReplaceWith("this.setImageInfo(imageInfo)"))
     override fun setFillColorResource(@ColorRes fillColorRes: Int) {
         this.setCircleBackgroundColorResource(fillColorRes)
     }
@@ -152,7 +152,7 @@ class NameInitialsCircleImageView : CircleImageView {
      * Sets the background color of the circle from a color resource
      *
      */
-    @Deprecated("Use setCircleBackgroundColor() instead", ReplaceWith("this.setImageInfo(imageInfo)"))
+    @Deprecated("Use setImageInfo() instead", ReplaceWith("this.setImageInfo(imageInfo)"))
     override fun setCircleBackgroundColorResource(@ColorRes circleBackgroundColor: Int) {
         mCircleBackgroundColor = ContextCompat.getColor(context, circleBackgroundColor)
         updateImageDrawable()
@@ -161,7 +161,7 @@ class NameInitialsCircleImageView : CircleImageView {
     /**
      * Sets the background color of the circle
      */
-    @Deprecated("Use setCircleBackgroundColor() instead", ReplaceWith("this.setImageInfo(imageInfo)"))
+    @Deprecated("Use setImageInfo() instead", ReplaceWith("this.setImageInfo(imageInfo)"))
     override fun setCircleBackgroundColor(@ColorInt circleBackgroundColor: Int) {
         mCircleBackgroundColor = circleBackgroundColor
         updateImageDrawable()
