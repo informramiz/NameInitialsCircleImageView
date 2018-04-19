@@ -95,13 +95,15 @@ class NameInitialsCircleImageView : CircleImageView {
             mTextSizePixels = typedArray.getDimensionPixelSize(R.styleable.NameInitialsCircleImageView_textSize,
                     context.resources.getDimensionPixelSize(DEFAULT_TEXT_SIZE_SP))
 
+            mCircleBackgroundColor = typedArray.getColor(R.styleable.NameInitialsCircleImageView_circleBackgroundColor,
+                    mColorGenerator.generateColor(mText))
             //check if there is font id specified by the developer
             if (typedArray.hasValue(R.styleable.NameInitialsCircleImageView_textFont)) {
                 //fetch the resource id and load the font
                 @FontRes val fontResId  = typedArray.getResourceId(R.styleable.NameInitialsCircleImageView_textFont, -1)
                 val typeface = ResourcesCompat.getFont(context, fontResId)
                 if (typeface != null) {
-                    mTypeface = typeface;
+                    mTypeface = typeface
                 }
             }
         } finally {

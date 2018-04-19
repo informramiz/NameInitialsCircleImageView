@@ -30,17 +30,17 @@ class MainActivity : AppCompatActivity() {
         initialsCircleImageView1.setImageInfo(imageInfo1)
 
         //image info config with image url null, so this should display only text
-        val imageInfo2: NameInitialsCircleImageView.ImageInfo = NameInitialsCircleImageView.ImageInfo
-                .Builder("RRt")
-                .setTextColor(android.R.color.primary_text_dark)
-                .setCircleBackgroundColorRes(android.R.color.holo_orange_dark)
-                .build();
-        initialsCircleImageView2.setImageInfo(imageInfo2)
+//        val imageInfo2: NameInitialsCircleImageView.ImageInfo = NameInitialsCircleImageView.ImageInfo
+//                .Builder("RRt")
+//                .setTextColor(android.R.color.primary_text_dark)
+//                .setCircleBackgroundColorRes(android.R.color.holo_orange_dark)
+//                .build();
+//        initialsCircleImageView2.setImageInfo(imageInfo2)
 
 
         //image info config with image url null, so this should display only text
         val imageInfo3: NameInitialsCircleImageView.ImageInfo = NameInitialsCircleImageView.ImageInfo
-                .Builder("RRR")
+                .Builder("Raja")
                 .setTextFont(R.font.aguafina_script)
                 .setColorGenerator(MaterialColorGenerator())
                 .build()
