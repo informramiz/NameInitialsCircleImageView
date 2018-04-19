@@ -5,6 +5,12 @@ A circle image view library that not only supports showing circular images (also
 
 It is just a custom view and you can use it just like you use any native Android views. You can also specify custom fonts just like any other android view.
 
+## Download
+
+```
+implementation 'io.github.informramiz:nameinitialscircleimageview:1.0'
+```
+
 ## Getting Started
 
 **XML**

@@ -1,6 +1,31 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+ext {
+    bintrayRepo = 'maven'
+    //package name
+    bintrayName = 'name-initials-circle-image-view'
+
+    publishedGroupId = 'io.github.informramiz'
+    libraryName = 'name-initials-circle-image-view'
+    artifact = 'nameinitialscircleimageview'
+
+    libraryDescription = 'A simple day picker library, just like native Android date/time pickers'
+
+    siteUrl = 'https://github.com/informramiz/NameInitialsCircleImageView'
+    gitUrl = 'https://github.com/informramiz/NameInitialsCircleImageView.git'
+
+    libraryVersion = versionName
+
+    developerId = 'informramiz'
+    developerName = 'Ramiz Raja'
+    developerEmail = 'informramiz@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 27
 
@@ -36,6 +61,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation'com.squareup.picasso:picasso:2.5.2'
 }
-repositories {
-    mavenCentral()
-}
+
+apply from: 'https://raw.githubusercontent.com/informramiz/SimpleDayPicker/master/daypickerlibrary/bintray.gradle'
+apply from: 'https://raw.githubusercontent.com/informramiz/SimpleDayPicker/master/daypickerlibrary/install.gradle'
