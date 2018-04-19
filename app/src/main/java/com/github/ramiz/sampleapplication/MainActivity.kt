@@ -1,10 +1,10 @@
 package com.github.ramiz.sampleapplication
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.github.ramiz.nameinitialscircleimageview.NameInitialsCircleImageView
 import com.materialdesign.ramiz.sampleapplication.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -18,14 +18,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
+        val imageUrl = "http://i.imgur.com/DvpvklR.png"
+        //image info config with valid image url so this should display image
+        val imageInfo1: NameInitialsCircleImageView.ImageInfo = NameInitialsCircleImageView.ImageInfo
+                .Builder("RR")
+                .setTextColor(android.R.color.primary_text_dark)
+                .setImageUrl(imageUrl)
+                .setCircleBackgroundColorRes(android.R.color.holo_orange_dark)
+                .build();
+        initialsCircleImageView1.setImageInfo(imageInfo1)
 
-//        initialsCircleImageView.setText("MR")
-//        initialsCircleImageView.setCircleBackgroundColorResource(android.R.color.darker_gray)
-        initialsCircleImageView.setImageUrl("http://i.imgur.com/DvpvklR.png")
+        //image info config with image url null, so this should display only text
+        val imageInfo2: NameInitialsCircleImageView.ImageInfo = NameInitialsCircleImageView.ImageInfo
+                .Builder("RR")
+                .setTextColor(android.R.color.primary_text_dark)
+                .setCircleBackgroundColorRes(android.R.color.holo_orange_dark)
+                .build();
+        initialsCircleImageView2.setImageInfo(imageInfo2)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
