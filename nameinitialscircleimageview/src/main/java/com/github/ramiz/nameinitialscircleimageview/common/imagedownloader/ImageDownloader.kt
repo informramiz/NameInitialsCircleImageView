@@ -2,6 +2,7 @@ package com.github.ramiz.nameinitialscircleimageview.common.imagedownloader
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.support.annotation.RestrictTo
 import android.widget.ImageView
 
 /**
@@ -11,6 +12,7 @@ import android.widget.ImageView
  * so that code can be easily switched between different
  * image downloaders.
  */
+@RestrictTo(RestrictTo.Scope.LIBRARY)
 interface ImageDownloader {
     fun downloadImage(context: Context, url: String, imageView: ImageView, placeHolder: Drawable)
 }

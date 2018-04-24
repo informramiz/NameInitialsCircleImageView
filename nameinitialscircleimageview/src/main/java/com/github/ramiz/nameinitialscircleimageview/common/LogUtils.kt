@@ -1,5 +1,6 @@
 package com.github.ramiz.nameinitialscircleimageview.common
 
+import android.support.annotation.RestrictTo
 import android.util.Log
 import com.github.ramiz.nameinitialscircleimageview.BuildConfig
 
@@ -8,6 +9,7 @@ import com.github.ramiz.nameinitialscircleimageview.BuildConfig
  * this class is Singleton
  */
 
+@RestrictTo(RestrictTo.Scope.LIBRARY)
 object LogUtils {
     fun v(tag: String, message: String) {
         if (!BuildConfig.DEBUG) return

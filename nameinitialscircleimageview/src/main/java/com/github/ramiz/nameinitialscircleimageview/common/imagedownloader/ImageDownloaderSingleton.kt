@@ -2,6 +2,7 @@ package com.github.ramiz.nameinitialscircleimageview.common.imagedownloader
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.support.annotation.RestrictTo
 import android.widget.ImageView
 
 /**
@@ -9,6 +10,7 @@ import android.widget.ImageView
  * Singleton because we only need one ImageDownloader in whole application
  */
 
+@RestrictTo(RestrictTo.Scope.LIBRARY)
 object ImageDownloaderSingleton {
     //this should be injected with Dagger2 but may
     //be for a later day
