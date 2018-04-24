@@ -12,7 +12,7 @@ final class PicassoImageDownloader : ImageDownloader {
 
     override fun downloadImage(context: Context, url: String, imageView: ImageView, placeHolder: Drawable) {
         Picasso
-                .with(context)
+                .get()
                 .load(url)
                 .noFade()
                 .placeholder(placeHolder)
