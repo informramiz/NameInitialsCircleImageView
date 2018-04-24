@@ -8,7 +8,7 @@ import com.squareup.picasso.Picasso
 /**
  * Created by ramiz on 1/29/18.
  */
-final class PicassoImageDownloader : ImageDownloader {
+class PicassoImageDownloader : ImageDownloader {
 
     override fun downloadImage(context: Context, url: String, imageView: ImageView, placeHolder: Drawable) {
         Picasso
