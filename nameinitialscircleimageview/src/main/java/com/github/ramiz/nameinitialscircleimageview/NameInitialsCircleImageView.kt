@@ -263,7 +263,7 @@ class NameInitialsCircleImageView : CircleImageView {
                 return this
             }
 
-            fun setImageUrl(imageUrl: String): Builder {
+            fun setImageUrl(imageUrl: String?): Builder {
                 this.imageUrl = imageUrl
                 return this
             }
