@@ -79,7 +79,7 @@ class NameInitialsCircleImageView : CircleImageView {
     private fun updateImageDrawable() {
         val url = mImageUrl
         val textDrawable = createRoundTextDrawable()
-        if (url == null) {
+        if (url == null || url.isEmpty()) {
             setImageDrawable(textDrawable)
         } else {
             ImageDownloaderSingleton.loadImage(context, url, this, textDrawable);
