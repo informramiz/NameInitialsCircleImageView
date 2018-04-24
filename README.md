@@ -8,7 +8,7 @@ It is just a custom view and you can use it just like you use any native Android
 ## Download
 
 ```
-implementation 'io.github.informramiz:nameinitialscircleimageview:1.1'
+implementation 'io.github.informramiz:nameinitialscircleimageview:1.2'
 ```
 
 ## Getting Started
