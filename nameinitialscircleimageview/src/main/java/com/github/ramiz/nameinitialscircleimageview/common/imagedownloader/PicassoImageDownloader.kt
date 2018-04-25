@@ -19,4 +19,8 @@ class PicassoImageDownloader : ImageDownloader {
                 .into(imageView)
     }
 
+    override fun invalidateImage(context: Context, url: String) {
+        Picasso.with(context)
+                .invalidate(url)
+    }
 }

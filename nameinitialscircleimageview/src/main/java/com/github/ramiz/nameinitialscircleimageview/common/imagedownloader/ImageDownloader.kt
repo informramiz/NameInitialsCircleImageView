@@ -15,4 +15,5 @@ import android.widget.ImageView
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 interface ImageDownloader {
     fun downloadImage(context: Context, url: String, imageView: ImageView, placeHolder: Drawable)
+    fun invalidateImage(context: Context, url: String);
 }
