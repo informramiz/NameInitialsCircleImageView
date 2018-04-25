@@ -209,6 +209,10 @@ class NameInitialsCircleImageView : CircleImageView {
             this.mCircleBackgroundColor = mColorGenerator.generateColor(mText)
         }
 
+        if (imageInfo.invalidateImageCache && imageInfo.imageUrl != null && !imageInfo.imageUrl.isEmpty()) {
+            ImageDownloaderSingleton.getImageDownloader(context).invalidateImage(context, imageInfo.imageUrl)
+        }
+
         updateImageDrawable()
     }
 
@@ -222,6 +226,7 @@ class NameInitialsCircleImageView : CircleImageView {
         internal val circleBackgroundColorRes: Int?
         internal val imageUrl: String?
         internal val colorGenerator: ColorGenerator
+        internal val invalidateImageCache: Boolean
 
         init {
             this.text = builder.text
@@ -230,6 +235,7 @@ class NameInitialsCircleImageView : CircleImageView {
             this.circleBackgroundColorRes = builder.circleBackgroundColorRes
             this.imageUrl = builder.imageUrl
             this.colorGenerator = builder.colorGenerator
+            this.invalidateImageCache = builder.invalidateImageCache
         }
 
         class Builder(internal var text: String) {
@@ -241,6 +247,7 @@ class NameInitialsCircleImageView : CircleImageView {
             internal var circleBackgroundColorRes: Int? = null
             internal var colorGenerator: ColorGenerator = NameInitialsCircleImageView.DEFAULT_COLOR_GENERATOR
             internal var imageUrl: String? = null
+            internal var invalidateImageCache: Boolean = false
 
             fun setText(text: String): Builder {
                 this.text = text
@@ -270,6 +277,11 @@ class NameInitialsCircleImageView : CircleImageView {
             fun setColorGenerator(colorGenerator: ColorGenerator): Builder {
                 this.colorGenerator = colorGenerator;
                 return this;
+            }
+
+            fun setInvalidateImageCache(invalidate: Boolean): Builder {
+                this.invalidateImageCache = invalidate
+                return this
             }
 
             fun build(): ImageInfo {

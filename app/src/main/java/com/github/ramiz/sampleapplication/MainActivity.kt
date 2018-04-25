@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
                 .Builder("RR")
                 .setTextColor(android.R.color.primary_text_dark)
                 .setImageUrl(imageUrl)
+                .setInvalidateImageCache(true)
                 .setCircleBackgroundColorRes(android.R.color.holo_orange_dark)
                 .build();
         initialsCircleImageView1.setImageInfo(imageInfo1)
