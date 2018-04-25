@@ -10,7 +10,6 @@ import android.widget.ImageView
  * Singleton because we only need one ImageDownloader in whole application
  */
 
-@RestrictTo(RestrictTo.Scope.LIBRARY)
 object ImageDownloaderSingleton {
     //this should be injected with Dagger2 but may
     //be for a later day
@@ -18,9 +17,13 @@ object ImageDownloaderSingleton {
     //Do you see the benefit of ImageDownloader interface???
     //We can just plugin a different image downloader and other
     //code in app will not need a single line of code change. Cool na?
-    private val imageDownloader: ImageDownloader = PicassoImageDownloader()
+    private var imageDownloader: ImageDownloader = PicassoImageDownloader()
 
-    fun loadImage(context: Context, url: String, imageView: ImageView, placeHolder: Drawable) {
-        imageDownloader.downloadImage(context, url, imageView, placeHolder)
+    fun getImageDownloader(context: Context): ImageDownloader {
+        return imageDownloader
+    }
+
+    fun setImageDownloader(imageDownloader: ImageDownloader) {
+        this.imageDownloader = imageDownloader;
     }
 }

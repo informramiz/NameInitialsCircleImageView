@@ -8,7 +8,6 @@ import android.support.annotation.DimenRes
 import android.support.annotation.FontRes
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.res.ResourcesCompat
-import android.support.v4.content.res.TypedArrayUtils
 import android.util.AttributeSet
 import com.amulyakhare.textdrawable.TextDrawable
 import com.github.ramiz.nameinitialscircleimageview.common.LogUtils
@@ -82,7 +81,7 @@ class NameInitialsCircleImageView : CircleImageView {
         if (url == null || url.isEmpty()) {
             setImageDrawable(textDrawable)
         } else {
-            ImageDownloaderSingleton.loadImage(context, url, this, textDrawable);
+            ImageDownloaderSingleton.getImageDownloader(context).downloadImage(context, url, this, textDrawable);
         }
     }
 

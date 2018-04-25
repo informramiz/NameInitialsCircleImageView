@@ -12,7 +12,6 @@ import android.widget.ImageView
  * so that code can be easily switched between different
  * image downloaders.
  */
-@RestrictTo(RestrictTo.Scope.LIBRARY)
 interface ImageDownloader {
     fun downloadImage(context: Context, url: String, imageView: ImageView, placeHolder: Drawable)
     fun invalidateImage(context: Context, url: String);
