@@ -11,10 +11,8 @@ import com.squareup.picasso.Picasso
  */
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 class PicassoImageDownloader : ImageDownloader {
-
     override fun downloadImage(context: Context, url: String, imageView: ImageView, placeHolder: Drawable) {
-        Picasso
-                .get()
+        Picasso.with(context)
                 .load(url)
                 .noFade()
                 .placeholder(placeHolder)
