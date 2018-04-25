@@ -8,7 +8,7 @@ It is just a custom view and you can use it just like you use any native Android
 ## Download
 
 ```
-implementation 'io.github.informramiz:nameinitialscircleimageview:1.5'
+implementation 'io.github.informramiz:nameinitialscircleimageview:1.6'
 ```
 
 ## Getting Started
@@ -56,7 +56,7 @@ val imageInfo: NameInitialsCircleImageView.ImageInfo = NameInitialsCircleImageVi
 initialsCircleImageView.setImageInfo(imageInfo)
 ```
 
-**Using a Color Generator**
+### Using a Color Generator
 
 By default, if you will not specify a background fill color then library will use a default color generator. 
 
@@ -94,3 +94,15 @@ val imageInfo: NameInitialsCircleImageView.ImageInfo = NameInitialsCircleImageVi
 initialsCircleImageView.setImageInfo(imageInfo)
 ```
 
+### Custom Image Downloader
+
+By default library uses a custom image downloader using picasso. If you would like you can use a custom downloader by extending the `ImageDownlader` interface.
+
+```
+class YourImageDownloader : ImageDownloader {
+...
+}
+
+
+ImageDownloaderSingleton.setImageDownloader(new YourImageDownloader())
+```
